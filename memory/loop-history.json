@@ -1,0 +1,36 @@
+[
+  {
+    "timestamp": "2026-05-06T23:36:40.612Z",
+    "hasLoop": true,
+    "loopCount": 1,
+    "types": [
+      "identical"
+    ]
+  },
+  {
+    "timestamp": "2026-05-06T23:36:40.613Z",
+    "hasLoop": false,
+    "loopCount": 0,
+    "types": []
+  },
+  {
+    "timestamp": "2026-05-06T23:36:43.888Z",
+    "hasLoop": false,
+    "loopCount": 0,
+    "types": []
+  },
+  {
+    "timestamp": "2026-05-06T23:41:34.116Z",
+    "hasLoop": true,
+    "loopCount": 1,
+    "types": [
+      "identical"
+    ]
+  },
+  {
+    "timestamp": "2026-05-06T23:41:34.119Z",
+    "hasLoop": false,
+    "loopCount": 0,
+    "types": []
+  }
+]

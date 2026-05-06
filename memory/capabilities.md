@@ -64,11 +64,13 @@ This file is a living document. Each capability should link to where it's define
 - **Log:** Record in `memory/upgrades.md`
 
 ### Agent Loop Enhancement
-- **Steering Queue:** Mid-conversation course correction → `memory/steering-queue.md`
-- **Followup Queue:** Post-completion task processing → `memory/followup-queue.md`
-- **Event System:** Structured action logging → `memory/event-system.md`
-- **Loop Detection:** Prevent infinite tool loops → `memory/loop-detection.md`
+- **Steering Queue:** Mid-conversation course correction → `memory/steering-queue.md` + `scripts/steering-queue.js`
+- **Followup Queue:** Post-completion task processing → `memory/followup-queue.md` + `scripts/followup-queue.js`
+- **Event System:** Structured action logging → `memory/event-system.md` + `scripts/event-system.js`
+- **Loop Detection:** Prevent infinite tool loops → `memory/loop-detection.md` + `scripts/loop-detection.js`
 - **Subagent Roles:** 6 defined profiles → `memory/subagent-roles.md`
+- **Fingerprinting:** Track file changes with hashes → `memory/fingerprinting.md` + `scripts/fingerprint.js`
+- **Staleness Detection:** Detect when files need updating → `memory/staleness.md` + `scripts/staleness.js`
 
 ---
 
@@ -123,14 +125,8 @@ When I learn something new:
 
 ## Capability Gaps (Known)
 
-| Gap | Priority | Notes |
-|-----|----------|-------|
-| Fingerprinting automation | P2 | Auto-compute and store file hashes |
-| Staleness automation | P2 | Auto-detect stale files via heartbeat |
-| Event emission | P2 | Actually emit events during tool calls |
-| Loop detection runtime | P2 | Run detection after each tool round |
-| Steering queue runtime | P2 | Actually inject steering messages |
-| Followup queue runtime | P2 | Actually process followup tasks |
+| Gap | Priority | What It Means |
+|-----|----------|---------------|
 | Checkpoint/resume | P3 | Save and restore conversation state |
 | Cost tracking | P3 | Monitor token usage |
 | Multi-provider LLM | P4 | Future optimization |

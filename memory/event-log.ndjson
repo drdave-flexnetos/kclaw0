@@ -1,0 +1,8 @@
+{"id":"evt-moup3exd-awq8","timestamp":"2026-05-06T23:35:21.169Z","sessionId":"unknown","turnIndex":0,"sequence":1,"eventType":"tool_call","data":{"tool":"test_tool"},"metadata":{"severity":"info","source":"agent"},"severity":"info"}
+{"id":"evt-moup3exe-liyc","timestamp":"2026-05-06T23:35:21.170Z","sessionId":"unknown","turnIndex":0,"sequence":2,"eventType":"tool_call","data":{"tool":"read"},"metadata":{"source":"agent"},"severity":"info"}
+{"id":"evt-moup3exf-omjl","timestamp":"2026-05-06T23:35:21.171Z","sessionId":"unknown","turnIndex":0,"sequence":3,"eventType":"tool_call","data":{"tool":"write"},"metadata":{"source":"agent"},"severity":"info"}
+{"id":"evt-moup3exf-va7s","timestamp":"2026-05-06T23:35:21.171Z","sessionId":"unknown","turnIndex":0,"sequence":4,"eventType":"memory_write","data":{"file":"test.md"},"metadata":{"source":"agent"},"severity":"info"}
+{"id":"evt-moupben4-vnbo","timestamp":"2026-05-06T23:41:34.048Z","sessionId":"unknown","turnIndex":0,"sequence":5,"eventType":"tool_call","data":{"tool":"test_tool"},"metadata":{"severity":"info","source":"agent"},"severity":"info"}
+{"id":"evt-moupben5-o95e","timestamp":"2026-05-06T23:41:34.049Z","sessionId":"unknown","turnIndex":0,"sequence":6,"eventType":"tool_call","data":{"tool":"read"},"metadata":{"source":"agent"},"severity":"info"}
+{"id":"evt-moupben5-0qpw","timestamp":"2026-05-06T23:41:34.049Z","sessionId":"unknown","turnIndex":0,"sequence":7,"eventType":"tool_call","data":{"tool":"write"},"metadata":{"source":"agent"},"severity":"info"}
+{"id":"evt-moupben6-4rx6","timestamp":"2026-05-06T23:41:34.050Z","sessionId":"unknown","turnIndex":0,"sequence":8,"eventType":"memory_write","data":{"file":"test.md"},"metadata":{"source":"agent"},"severity":"info"}
