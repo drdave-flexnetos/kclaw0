@@ -1,6 +1,7 @@
 # .gitignore
 .openclaw/
 memory_consolidation/
+memory.backup.*/
 node_modules/
 *.log
 KSE/target/
