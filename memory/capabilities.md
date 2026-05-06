@@ -71,6 +71,7 @@ This file is a living document. Each capability should link to where it's define
 - **Subagent Roles:** 6 defined profiles → `memory/subagent-roles.md`
 - **Fingerprinting:** Track file changes with hashes → `memory/fingerprinting.md` + `scripts/fingerprint.js`
 - **Staleness Detection:** Detect when files need updating → `memory/staleness.md` + `scripts/staleness.js`
+- **Checkpoint/Resume:** Save and restore session state → `memory/self-upgrade-pipeline.md` + `scripts/checkpoint.js` + `tests/checkpoint.test.js`
 
 ---
 
@@ -127,7 +128,7 @@ When I learn something new:
 
 | Gap | Priority | What It Means |
 |-----|----------|---------------|
-| Checkpoint/resume | P3 | Save and restore conversation state |
+| Checkpoint/resume | ✓ COMPLETE | Save and restore conversation state |
 | Cost tracking | P3 | Monitor token usage |
 | Multi-provider LLM | P4 | Future optimization |
 | Docker execution | P4 | Isolated testing environment |

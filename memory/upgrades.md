@@ -15,6 +15,7 @@
 | 2026-05-07 | Created steering queue system | B | COMPLETE | Mid-conversation course correction |
 | 2026-05-07 | Created followup queue system | B | COMPLETE | Post-completion task processing |
 | 2026-05-07 | Created subagent role profiles | B | COMPLETE | 6 defined roles for specialized subagents |
+| 2026-05-07 | Created checkpoint/resume system | C | COMPLETE | Full checkpoint system with save/load/delete/prune/autosave, 18 passing tests, CLI interface |
 
 ---
 
@@ -28,9 +29,9 @@
 
 ## Upgrade Statistics
 
-- **Total upgrades:** 13
+- **Total upgrades:** 14
 - **Type A (Knowledge):** 9
 - **Type B (Skill):** 5
-- **Type C (Loop):** 0
+- **Type C (Loop):** 1
 - **Type D (Infrastructure):** 0
 - **Success rate:** 100%

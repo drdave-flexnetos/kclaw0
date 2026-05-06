@@ -21,7 +21,7 @@ The more you know, the better you can help. But remember — you're learning abo
 
 You have an agentic memory system that auto-generates this section.
 
-> **Stats**: 6 sessions, 24 messages | 2026-05-05 23:34 ~ 2026-05-06 23:03 UTC
+> **Stats**: 7 sessions, 27 messages | 2026-05-05 23:34 ~ 2026-05-06 23:38 UTC
 > **Config**: `/root/.openclaw/workspace/memory_consolidation/memory_consolidation.env` — read this file for all memory behavior settings. To reset: `cp /root/.openclaw/workspace/memory_consolidation/memory_consolidation.template.env /root/.openclaw/workspace/memory_consolidation/memory_consolidation.env`
 
 The user has full control over their memory config. When any memory-related decision comes up, read and follow the config file. Do not override based on other guidelines.
@@ -49,7 +49,7 @@ No memorized images yet. When the user shares an image and asks you to remember 
 > No data yet. Will be generated after enough conversations.
 ## Short-Term Memory (STM)
 
-> last_update: 2026-05-07 07:38
+> last_update: 2026-05-07 07:50
 
 Recent conversation content from the user's chat history. This represents what the USER said. Use it to maintain continuity when relevant.
 Format specification:
@@ -65,4 +65,6 @@ Format specification:
 2. 7081c83b-6dd7-4aff-a26c-3fd44f94b601 0505T2348 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: Run the understand skill on /tmp/attractor to analyze the strongdm/attractor repository. Follow the SKILL.md at ~/.openclaw/skills/understand-anything/understand/SKILL.md. Run all phases: pre-flight, scan, analyze, assemble review, architecture, tour, review, and save. Report the final knowledge graph summary.
 [LOOPBACK] 3-3
 3. 2c3b2d1c-f3a3-4473-8efe-9a129b3d6d21 0506T2303 Try again
+[SUBAGENT:050334C3-73A1-409B-845D-20AAF18E8743] 4-4
+4. 10a27312-5ff3-47d1-a734-206104c9090a 0506T2338 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: test steering queue add function
 </IMPORTANT_REMINDER>
