@@ -29,22 +29,6 @@ This file models KClaw0's codebase and capabilities as a KnowledgeGraph using th
 - `file:BOOTSTRAP.md` — First-run guide (to be deleted after use)
 - `file:package.json` — Workspace dependencies
 - `file:tsconfig.json` — TypeScript config
-- `file:memory/knowledge-graph.md` — Self-model as a KnowledgeGraph
-- `file:memory/agent-loop.md` — Formalized agent loop spec
-- `file:memory/self-upgrade-pipeline.md` — Safe upgrade workflows
-- `file:memory/provider-strategy.md` — LLM provider abstraction plan
-- `file:memory/capabilities.md` — Capability registry
-- `file:memory/lessons-learned.md` — Insights and mistakes
-- `file:memory/patterns.md` — Reusable patterns
-- `file:memory/self-upgrade-queue.md` — Pending upgrades
-- `file:memory/upgrades.md` — Upgrade history
-- `file:memory/fingerprinting.md` — Track file changes with hashes
-- `file:memory/staleness.md` — Detect when memory files need updating
-- `file:memory/event-system.md` — Structured event logging
-- `file:memory/loop-detection.md` — Prevent infinite tool call cycles
-- `file:memory/steering-queue.md` — Mid-conversation course correction
-- `file:memory/followup-queue.md` — Post-completion task processing
-- `file:memory/subagent-roles.md` — Defined subagent profiles
 
 #### Functions (capabilities I perform)
 - `function:memory_search` — Search persistent memory
@@ -76,13 +60,7 @@ This file models KClaw0's codebase and capabilities as a KnowledgeGraph using th
 - `class:SkillRegistry` — Available skills and their loading
 - `class:SubagentOrchestrator` — Subagent spawning and management
 - `class:KnowledgeGraph` — This self-model
-- `class:FingerprintingSystem` — Track file changes with hashes
-- `class:StalenessDetector` — Detect when memory files need updating
-- `class:EventSystem` — Structured action logging
-- `class:LoopDetector` — Prevent infinite tool call cycles
-- `class:SteeringQueue` — Mid-conversation course correction
-- `class:FollowupQueue` — Post-completion task processing
-- `class:SubagentRoleProfiles` — Defined subagent configurations
+- `class:SelfUpgradePipeline` — Planned upgrade workflow system
 
 #### Modules (functional areas)
 - `module:Memory` — All memory-related operations
@@ -177,13 +155,6 @@ This file models KClaw0's codebase and capabilities as a KnowledgeGraph using th
 - `file:AGENTS.md` → `contains` → `concept:AgenticLoop`
 - `class:MemorySystem` → `contains` → `function:memory_search`
 - `class:MemorySystem` → `contains` → `function:memory_get`
-- `class:FingerprintingSystem` → `contains` → `file:memory/fingerprinting.md`
-- `class:StalenessDetector` → `contains` → `file:memory/staleness.md`
-- `class:EventSystem` → `contains` → `file:memory/event-system.md`
-- `class:LoopDetector` → `contains` → `file:memory/loop-detection.md`
-- `class:SteeringQueue` → `contains` → `file:memory/steering-queue.md`
-- `class:FollowupQueue` → `contains` → `file:memory/followup-queue.md`
-- `class:SubagentRoleProfiles` → `contains` → `file:memory/subagent-roles.md`
 - `module:Memory` → `contains` → `class:MemorySystem`
 - `module:Tools` → `contains` → `function:read`
 - `module:Tools` → `contains` → `function:write`
@@ -206,12 +177,6 @@ This file models KClaw0's codebase and capabilities as a KnowledgeGraph using th
 - `class:AgentLoop` → `depends_on` → `class:MemorySystem`
 - `class:SelfUpgradePipeline` → `depends_on` → `class:AgentLoop`
 - `module:SelfUpgrade` → `depends_on` → `module:Tools`
-- `class:StalenessDetector` → `depends_on` → `class:FingerprintingSystem`
-- `class:AgentLoop` → `depends_on` → `class:SteeringQueue`
-- `class:AgentLoop` → `depends_on` → `class:FollowupQueue`
-- `class:AgentLoop` → `depends_on` → `class:LoopDetector`
-- `class:AgentLoop` → `depends_on` → `class:EventSystem`
-- `class:SubagentOrchestrator` → `depends_on` → `class:SubagentRoleProfiles`
 
 ### Semantic
 - `entity:Understand-Anything` → `related` → `entity:Attractor`
@@ -252,6 +217,6 @@ This file models KClaw0's codebase and capabilities as a KnowledgeGraph using th
 ---
 
 ## Complexity Map
-- **simple:** USER.md, IDENTITY.md, BOOTSTRAP.md, memory/self-upgrade-queue.md, memory/upgrades.md
-- **moderate:** AGENTS.md, TOOLS.md, HEARTBEAT.md, memory/fingerprinting.md, memory/staleness.md, individual skills
-- **complex:** MEMORY.md, memory_consolidation system, agent loop internals, self-upgrade pipeline, memory/event-system.md, memory/loop-detection.md, memory/steering-queue.md, memory/followup-queue.md, memory/subagent-roles.md, memory/knowledge-graph.md, memory/agent-loop.md, memory/self-upgrade-pipeline.md
+- **simple:** USER.md, IDENTITY.md, BOOTSTRAP.md
+- **moderate:** AGENTS.md, TOOLS.md, HEARTBEAT.md, individual skills
+- **complex:** MEMORY.md, memory_consolidation system, agent loop internals, self-upgrade pipeline

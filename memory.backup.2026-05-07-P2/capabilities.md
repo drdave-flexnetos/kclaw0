@@ -64,11 +64,10 @@ This file is a living document. Each capability should link to where it's define
 - **Log:** Record in `memory/upgrades.md`
 
 ### Agent Loop Enhancement
-- **Steering Queue:** Mid-conversation course correction → `memory/steering-queue.md`
-- **Followup Queue:** Post-completion task processing → `memory/followup-queue.md`
-- **Event System:** Structured action logging → `memory/event-system.md`
-- **Loop Detection:** Prevent infinite tool loops → `memory/loop-detection.md`
-- **Subagent Roles:** 6 defined profiles → `memory/subagent-roles.md`
+- **Steering Queue:** Mid-conversation course correction (NOT YET IMPLEMENTED)
+- **Followup Queue:** Post-completion task processing (NOT YET IMPLEMENTED)
+- **Event System:** Structured action logging (NOT YET IMPLEMENTED)
+- **Loop Detection:** Prevent infinite tool loops (NOT YET IMPLEMENTED)
 
 ---
 
@@ -125,13 +124,10 @@ When I learn something new:
 
 | Gap | Priority | Notes |
 |-----|----------|-------|
-| Fingerprinting automation | P2 | Auto-compute and store file hashes |
-| Staleness automation | P2 | Auto-detect stale files via heartbeat |
-| Event emission | P2 | Actually emit events during tool calls |
-| Loop detection runtime | P2 | Run detection after each tool round |
-| Steering queue runtime | P2 | Actually inject steering messages |
-| Followup queue runtime | P2 | Actually process followup tasks |
-| Checkpoint/resume | P3 | Save and restore conversation state |
-| Cost tracking | P3 | Monitor token usage |
+| Steering queue | P2 | Mid-conversation guidance injection |
+| Followup queue | P2 | Post-completion task automation |
+| Event system | P2 | Structured logging |
+| Loop detection | P2 | Prevent stuck agents |
 | Multi-provider LLM | P4 | Future optimization |
-| Docker execution | P4 | Isolated testing environment |
+| Cost tracking | P3 | Monitor token usage |
+| Subagent roles | P3 | Defined subagent profiles |

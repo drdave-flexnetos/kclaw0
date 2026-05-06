@@ -6,13 +6,13 @@
 | P1 | A | Build KnowledgeGraph of own codebase | COMPLETE | - |
 | P1 | A | Formalize agent loop spec | COMPLETE | - |
 | P1 | A | Create self-upgrade pipeline spec | COMPLETE | - |
-| P2 | B | Implement steering queue | COMPLETE | agent-loop.md |
-| P2 | B | Implement followup queue | COMPLETE | agent-loop.md |
-| P2 | B | Add event system | COMPLETE | agent-loop.md |
-| P2 | B | Add loop detection | COMPLETE | agent-loop.md |
-| P2 | B | Create subagent role profiles | COMPLETE | - |
-| P2 | A | Add fingerprinting to track file changes | COMPLETE | - |
-| P2 | A | Add staleness detection for memory files | COMPLETE | fingerprinting |
+| P2 | B | Implement steering queue | PENDING | agent-loop.md |
+| P2 | B | Implement followup queue | PENDING | agent-loop.md |
+| P2 | B | Add event system | PENDING | agent-loop.md |
+| P2 | B | Add loop detection | PENDING | agent-loop.md |
+| P2 | B | Create subagent role profiles | PENDING | - |
+| P2 | A | Add fingerprinting to track file changes | PENDING | - |
+| P2 | A | Add staleness detection for memory files | PENDING | fingerprinting |
 | P3 | B | Implement cost tracking | PENDING | - |
 | P3 | C | Add checkpoint/resume to conversations | PENDING | self-upgrade-pipeline |
 | P3 | C | Add structured event logging | PENDING | event system |
