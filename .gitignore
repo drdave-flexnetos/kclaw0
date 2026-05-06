@@ -3,3 +3,4 @@
 memory_consolidation/
 node_modules/
 *.log
+KSE/target/
