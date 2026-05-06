@@ -6,3 +6,5 @@
 {"id":"evt-moupben5-o95e","timestamp":"2026-05-06T23:41:34.049Z","sessionId":"unknown","turnIndex":0,"sequence":6,"eventType":"tool_call","data":{"tool":"read"},"metadata":{"source":"agent"},"severity":"info"}
 {"id":"evt-moupben5-0qpw","timestamp":"2026-05-06T23:41:34.049Z","sessionId":"unknown","turnIndex":0,"sequence":7,"eventType":"tool_call","data":{"tool":"write"},"metadata":{"source":"agent"},"severity":"info"}
 {"id":"evt-moupben6-4rx6","timestamp":"2026-05-06T23:41:34.050Z","sessionId":"unknown","turnIndex":0,"sequence":8,"eventType":"memory_write","data":{"file":"test.md"},"metadata":{"source":"agent"},"severity":"info"}
+{"id":"evt-moupd0hx-id8s","timestamp":"2026-05-06T23:42:49.029Z","sessionId":"unknown","turnIndex":0,"sequence":9,"eventType":"memory_write","data":{"file":"test.md"},"metadata":{"source":"agent"},"severity":"info"}
+{"id":"evt-moupd0i2-zagp","timestamp":"2026-05-06T23:42:49.034Z","sessionId":"unknown","turnIndex":0,"sequence":10,"eventType":"file_write","data":{"file":"memory/fingerprints.json"},"metadata":{"source":"agent"},"severity":"info"}

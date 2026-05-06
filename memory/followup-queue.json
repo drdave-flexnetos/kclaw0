@@ -27,7 +27,21 @@
       "origin": null,
       "completedAt": null,
       "result": null
+    },
+    {
+      "id": "fol-005",
+      "timestamp": "2026-05-06T23:42:49.033Z",
+      "summary": "Test followup",
+      "priority": "low",
+      "status": "pending",
+      "delayMinutes": 0,
+      "dueAt": "2026-05-06T23:42:49.033Z",
+      "source": "conversation",
+      "action": null,
+      "origin": null,
+      "completedAt": null,
+      "result": null
     }
   ],
-  "lastId": 4
+  "lastId": 5
 }

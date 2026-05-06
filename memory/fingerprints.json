@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-05-06T23:41:33.922Z",
+  "lastUpdated": "2026-05-06T23:42:49.013Z",
   "files": {
     "AGENTS.md": {
       "hash": "1367b9a1a6813e0bdf68a7dcc1bef3655dfa326628552c9b7eca6ae68d5fe57d",
@@ -73,10 +73,10 @@
       "firstSeen": "2026-05-06T23:29:17.388Z"
     },
     "memory/capabilities.md": {
-      "hash": "4e61fc3306262bf1d30095895c6071d3109c4fb19a1e31d04657be4db6b703e6",
-      "size": 4377,
-      "lines": 138,
-      "mtime": "2026-05-06T23:23:14.384Z",
+      "hash": "963800cbc8a2a6bc3a2c420798a3cb982fc4dc6a7311a253e484de3b995b2bfa",
+      "size": 4321,
+      "lines": 134,
+      "mtime": "2026-05-06T23:41:57.421Z",
       "firstSeen": "2026-05-06T23:29:17.388Z"
     },
     "memory/event-system.md": {
@@ -219,6 +219,12 @@
       "changeCount": 1,
       "firstSeen": "2026-05-06T23:29:17.387Z",
       "lastChange": "2026-05-06T23:41:33.925Z"
+    },
+    {
+      "path": "memory/capabilities.md",
+      "changeCount": 1,
+      "firstSeen": "2026-05-06T23:29:17.388Z",
+      "lastChange": "2026-05-06T23:42:49.022Z"
     }
   ]
 }

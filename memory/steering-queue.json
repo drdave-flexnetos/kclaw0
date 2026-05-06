@@ -1,17 +1,4 @@
 {
-  "messages": [
-    {
-      "id": "str-001",
-      "timestamp": "2026-05-06T23:41:34.176Z",
-      "message": "Inject this",
-      "priority": "high",
-      "status": "consumed",
-      "ttlMinutes": 60,
-      "source": "user",
-      "context": null,
-      "expiresAt": "2026-05-07T00:41:34.176Z",
-      "consumedAt": "2026-05-06T23:41:34.177Z"
-    }
-  ],
-  "lastId": 1
+  "messages": [],
+  "lastId": 0
 }
