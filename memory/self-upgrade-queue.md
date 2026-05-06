@@ -1,0 +1,41 @@
+# Self-Upgrade Queue
+## Planned Improvements (Not Yet Implemented)
+
+| Priority | Category | Description | Status | Dependencies |
+|----------|----------|-------------|--------|--------------|
+| P1 | A | Build KnowledgeGraph of own codebase | COMPLETE | - |
+| P1 | A | Formalize agent loop spec | COMPLETE | - |
+| P1 | A | Create self-upgrade pipeline spec | COMPLETE | - |
+| P2 | B | Implement steering queue | PENDING | agent-loop.md |
+| P2 | B | Implement followup queue | PENDING | agent-loop.md |
+| P2 | B | Add event system | PENDING | agent-loop.md |
+| P2 | B | Add loop detection | PENDING | agent-loop.md |
+| P2 | B | Create subagent role profiles | PENDING | - |
+| P2 | A | Add fingerprinting to track file changes | PENDING | - |
+| P2 | A | Add staleness detection for memory files | PENDING | fingerprinting |
+| P3 | B | Implement cost tracking | PENDING | - |
+| P3 | C | Add checkpoint/resume to conversations | PENDING | self-upgrade-pipeline |
+| P3 | C | Add structured event logging | PENDING | event system |
+| P4 | D | Multi-provider LLM abstraction | FUTURE | provider-strategy.md |
+| P4 | D | Docker execution environment | FUTURE | - |
+
+---
+
+## Category Definitions
+
+- **Type A (Memory/Knowledge):** Safest — memory files, knowledge graphs, documentation
+- **Type B (Skill/Tool):** Moderate — skills, tool configurations, behavior patterns
+- **Type C (Agent Loop):** High — core loop modifications, thinking strategy
+- **Type D (Infrastructure):** Highest — platform config, model settings, channels
+
+---
+
+## Queue Management Rules
+
+1. Always complete P1 before starting P2
+2. Complete all of one priority before moving to next
+3. Human gate required for Type C and D
+4. Backup required for ALL types
+5. Log completion in `memory/upgrades.md`
+6. Remove from queue when complete
+7. Add new items as gaps are identified

@@ -1,0 +1,78 @@
+[package]
+name = "kse"
+version = "0.1.0"
+edition = "2024"
+authors = ["KClaw0 <self-upgrading@kclaw0.ai>"]
+description = "KClaw0 Self-Upgrade Engine - A self-learning action plan loop for autonomous agent improvement"
+license = "MIT"
+repository = "https://github.com/KClaw0/kse"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.52", features = ["full", "rt-multi-thread"] }
+tokio-util = "0.7"
+
+# Lua embedding
+mlua = { version = "0.10", features = ["lua54", "vendored", "async", "serialize"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0"
+
+# Logging/tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+
+# CLI
+clap = { version = "4.5", features = ["derive"] }
+
+# HTTP client (for LLM adapters)
+reqwest = { version = "0.12", features = ["json", "stream", "rustls-tls"] }
+
+# Streaming/SSE
+eventsource-stream = "0.2"
+futures = "0.3"
+
+# DOT parsing
+nom = "7.1"
+
+# File watching (for discover phase)
+notify = "7.0"
+
+# Hashing (for fingerprints)
+sha2 = "0.10"
+blake3 = "1.5"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Regex
+regex = "1.11"
+
+# Indexing/search
+fst = "0.4"
+
+# WASM sandboxing (for execute phase)
+wasmtime = { version = "30.0", optional = true }
+
+# Docker sandboxing (fallback)
+#[cfg(feature = "docker")]
+#bollard = "0.18"
+
+[features]
+default = ["wasm-sandbox"]
+wasm-sandbox = ["wasmtime"]
+docker-sandbox = []
+
+[dev-dependencies]
+tokio-test = "0.4"
+pretty_assertions = "1.4"
+
+[[bin]]
+name = "kse"
+path = "src/main.rs"

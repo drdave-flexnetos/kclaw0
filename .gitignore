@@ -1,0 +1,5 @@
+# .gitignore
+.openclaw/
+memory_consolidation/
+node_modules/
+*.log
