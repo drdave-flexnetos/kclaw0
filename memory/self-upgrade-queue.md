@@ -16,7 +16,7 @@
 | P3 | B | Implement cost tracking | COMPLETE | - |
 | P3 | C | Add checkpoint/resume to conversations | COMPLETE | self-upgrade-pipeline |
 | P3 | C | Add structured event logging | COMPLETE | event system |
-| P4 | D | Multi-provider LLM abstraction | IN-PROGRESS | provider-strategy.md |
+| P4 | D | Multi-provider LLM abstraction | COMPLETE | provider-strategy.md |
 | P4 | D | Docker execution environment | COMPLETE | - |
 
 ---

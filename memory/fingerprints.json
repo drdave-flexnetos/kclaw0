@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-05-07T00:03:07.529Z",
+  "lastUpdated": "2026-05-07T00:10:15.472Z",
   "files": {
     "AGENTS.md": {
       "hash": "1367b9a1a6813e0bdf68a7dcc1bef3655dfa326628552c9b7eca6ae68d5fe57d",
@@ -157,10 +157,10 @@
       "firstSeen": "2026-05-06T23:29:17.391Z"
     },
     "memory/self-upgrade-queue.md": {
-      "hash": "c391ffd6fc649e1c46d13a4e89e1bb82de6b11f82b43cc2d8230e60046a45422",
-      "size": 1866,
+      "hash": "6d753bd047aa43f0ab19f279846e067c81af5244d0cb87ae31eb32a0fda8a5a5",
+      "size": 1863,
       "lines": 42,
-      "mtime": "2026-05-06T23:55:38.970Z",
+      "mtime": "2026-05-07T00:03:58.231Z",
       "firstSeen": "2026-05-06T23:29:17.391Z"
     },
     "memory/staleness.md": {
@@ -248,9 +248,9 @@
     },
     {
       "path": "memory/self-upgrade-queue.md",
-      "changeCount": 1,
+      "changeCount": 2,
       "firstSeen": "2026-05-06T23:29:17.391Z",
-      "lastChange": "2026-05-06T23:59:44.088Z"
+      "lastChange": "2026-05-07T00:10:15.333Z"
     },
     {
       "path": "memory/upgrades.md",

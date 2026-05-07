@@ -476,11 +476,16 @@ class MockAdapter {
   }
 
   fromNativeResponse(native, unifiedModel) {
+    const usage = native.mockUsage || { inputTokens: 10, outputTokens: 20, totalTokens: 30 };
     return {
       content: native.mockContent || `Mock response for ${unifiedModel}`,
-      usage: native.mockUsage || { inputTokens: 10, outputTokens: 20, totalTokens: 30 },
       model: unifiedModel,
-      finishReason: 'stop',
+      finishReason: native.mockFinish || 'stop',
+      usage: {
+        inputTokens: usage.inputTokens || 0,
+        outputTokens: usage.outputTokens || 0,
+        totalTokens: (usage.inputTokens || 0) + (usage.outputTokens || 0),
+      },
       raw: native,
     };
   }

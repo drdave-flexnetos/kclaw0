@@ -296,7 +296,7 @@ section('Test 7: Mock Adapter');
 
   const resp = mock.fromNativeResponse({ mockContent: 'Hello from mock', mockUsage: { inputTokens: 5, outputTokens: 10 } }, 'mock-alpha');
   assertEqual(resp.content, 'Hello from mock', 'Mock content extracted');
-  assertDeep(resp.usage, { inputTokens: 5, outputTokens: 10, totalTokens: 0 }, 'Mock usage extracted');
+  assertDeep(resp.usage, { inputTokens: 5, outputTokens: 10, totalTokens: 15 }, 'Mock usage extracted');
   assertEqual(resp.finishReason, 'stop', 'Mock finish reason is stop');
 
   // Test failure simulation
@@ -418,6 +418,7 @@ section('Test 12: Provider Request Translation');
   assert(kimiReq.headers.Authorization, 'Kimi has Authorization header');
 
   // Anthropic: system message extraction
+  process.env.ANTHROPIC_API_KEY = 'test-anthropic-key';
   const anthropic = new AnthropicAdapter(testConfig.providers.anthropic);
   const anthropicReq = anthropic.toNativeRequest({
     model: 'claude-sonnet-4',
@@ -434,8 +435,8 @@ section('Test 12: Provider Request Translation');
   assertEqual(anthropicReq.headers['anthropic-version'], '2023-06-01', 'Anthropic version header');
 
   // Gemini: key in query param
-  const gemini = new GeminiAdapter(testConfig.providers.gemini);
   process.env.GEMINI_API_KEY = 'test-key-123';
+  const gemini = new GeminiAdapter(testConfig.providers.gemini);
   const geminiReq = gemini.toNativeRequest({
     model: 'gemini-2.5-pro',
     messages: [{ role: 'user', content: 'Hi' }],
