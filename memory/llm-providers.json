@@ -1,0 +1,63 @@
+{
+  "providers": {
+    "kimi": {
+      "baseUrl": "https://api.moonshot.cn",
+      "apiKeyEnv": "KIMI_API_KEY",
+      "models": ["kimi-k2p6", "kimi-k2p5"],
+      "defaultModel": "kimi-k2p6",
+      "pricing": {
+        "kimi-k2p6": { "inputPerM": 1.00, "outputPerM": 3.00 },
+        "kimi-k2p5": { "inputPerM": 0.50, "outputPerM": 1.50 }
+      }
+    },
+    "openai": {
+      "baseUrl": "https://api.openai.com",
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "models": ["gpt-5", "gpt-4o", "gpt-4o-mini", "o3", "o4-mini"],
+      "defaultModel": "gpt-4o",
+      "pricing": {
+        "gpt-5": { "inputPerM": 2.50, "outputPerM": 10.00 },
+        "gpt-4o": { "inputPerM": 2.50, "outputPerM": 10.00 },
+        "gpt-4o-mini": { "inputPerM": 0.15, "outputPerM": 0.60 },
+        "o3": { "inputPerM": 10.00, "outputPerM": 40.00 },
+        "o4-mini": { "inputPerM": 1.10, "outputPerM": 4.40 }
+      }
+    },
+    "anthropic": {
+      "baseUrl": "https://api.anthropic.com",
+      "apiKeyEnv": "ANTHROPIC_API_KEY",
+      "models": ["claude-opus-4", "claude-sonnet-4", "claude-haiku-4"],
+      "defaultModel": "claude-sonnet-4",
+      "pricing": {
+        "claude-opus-4": { "inputPerM": 15.00, "outputPerM": 75.00 },
+        "claude-sonnet-4": { "inputPerM": 3.00, "outputPerM": 15.00 },
+        "claude-haiku-4": { "inputPerM": 0.25, "outputPerM": 1.25 }
+      }
+    },
+    "gemini": {
+      "baseUrl": "https://generativelanguage.googleapis.com",
+      "apiKeyEnv": "GEMINI_API_KEY",
+      "models": ["gemini-2.5-pro", "gemini-2.5-flash"],
+      "defaultModel": "gemini-2.5-pro",
+      "pricing": {
+        "gemini-2.5-pro": { "inputPerM": 1.25, "outputPerM": 10.00 },
+        "gemini-2.5-flash": { "inputPerM": 0.15, "outputPerM": 0.60 }
+      }
+    },
+    "ollama": {
+      "baseUrl": "http://localhost:11434",
+      "apiKeyEnv": null,
+      "models": ["llama3", "mistral", "codellama", "qwen2"],
+      "defaultModel": "llama3",
+      "pricing": {}
+    }
+  },
+  "default": "kimi",
+  "fallbacks": ["kimi", "openai", "anthropic", "gemini"],
+  "aliases": {
+    "fast": "kimi-k2p5",
+    "deep": "claude-opus-4",
+    "code": "kimi-k2p6",
+    "vision": "gpt-4o"
+  }
+}

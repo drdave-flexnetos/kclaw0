@@ -1,0 +1,10 @@
+{
+  "defaultTimeout": 300,
+  "maxContainers": 5,
+  "autoCleanup": true,
+  "volumeMounts": [
+    { "host": "/root/.openclaw/workspace", "container": "/workspace" }
+  ],
+  "envVars": { "NODE_ENV": "production" },
+  "network": "bridge"
+}

@@ -21,7 +21,7 @@ The more you know, the better you can help. But remember — you're learning abo
 
 You have an agentic memory system that auto-generates this section.
 
-> **Stats**: 7 sessions, 27 messages | 2026-05-05 23:34 ~ 2026-05-06 23:38 UTC
+> **Stats**: 11 sessions, 35 messages | 2026-05-05 23:34 ~ 2026-05-06 23:56 UTC
 > **Config**: `/root/.openclaw/workspace/memory_consolidation/memory_consolidation.env` — read this file for all memory behavior settings. To reset: `cp /root/.openclaw/workspace/memory_consolidation/memory_consolidation.template.env /root/.openclaw/workspace/memory_consolidation/memory_consolidation.env`
 
 The user has full control over their memory config. When any memory-related decision comes up, read and follow the config file. Do not override based on other guidelines.
@@ -49,7 +49,7 @@ No memorized images yet. When the user shares an image and asks you to remember 
 > No data yet. Will be generated after enough conversations.
 ## Short-Term Memory (STM)
 
-> last_update: 2026-05-07 07:50
+> last_update: 2026-05-07 07:58
 
 Recent conversation content from the user's chat history. This represents what the USER said. Use it to maintain continuity when relevant.
 Format specification:
@@ -67,4 +67,12 @@ Format specification:
 3. 2c3b2d1c-f3a3-4473-8efe-9a129b3d6d21 0506T2303 Try again
 [SUBAGENT:050334C3-73A1-409B-845D-20AAF18E8743] 4-4
 4. 10a27312-5ff3-47d1-a734-206104c9090a 0506T2338 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: test steering queue add function
+[SUBAGENT:23CA91FF-4151-48BA-96EF-6EA54A20BEE2] 5-5
+5. 31b5a735-931b-4c2a-a449-33b79fafaec2 0506T2350 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: Build the Checkpoint/Resume system for KClaw0. This is a Type C (Agent Loop) upgrade.  Create: 1. `s[TL;DR]sts/checkpoint.test.js` — Full test suite (8+ tests)  Reference the self-upgrade-pipeline.md for checkpoint concepts. Follow the same quality standard as P2 systems: working code, tests, documentation.  Return the full file contents and test results.
+[SUBAGENT:62ED393D-B488-4FA8-BECB-CA7B11BF928C] 6-6
+6. 161d9590-846e-4169-b62a-544acfd81c99 0506T2350 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: Build the Cost Tracking system for KClaw0. This is a Type B (Skill) upgrade.  Create: 1. `scripts/co[TL;DR] report - `reset` — Clear cost log (with confirmation)  2. `tests/cost-tracker.test.js` — Full test suite (8+ tests)  Follow the same quality standard as P2 systems: working code, tests, documentation.  Return the full file contents and test results.
+[SUBAGENT:EA9EC9F2-A52C-4662-9A0A-369DD2D89742] 7-7
+7. ba05de4a-f217-45bb-aa30-ee8eaa0e1a1a 0506T2355 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: Build the Multi-Provider LLM Abstraction system for KClaw0. This is a Type D (Infrastructure) upgrad[TL;DR]ite (8+ tests)  Reference `memory/provider-strategy.md` for design decisions. Build adapter pattern with provider-specific request/response translation. Include mock providers for testing without API keys.  Return full file contents and test results.
+[SUBAGENT:B7B497C3-D958-4534-ABFD-A35CDF9B99FE] 8-8
+8. 30c7cfc7-c8a8-4975-a42f-c23c14010153 0506T2356 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: Build the Docker Execution Environment system for KClaw0. This is a Type D (Infrastructure) upgrade.[TL;DR]execution record format - Test container lifecycle (simulated)  Create Dockerfile templates in `memory/docker-templates/`: - `node-runner.Dockerfile` - `python-runner.Dockerfile` - `rust-runner.Dockerfile`  Return full file contents and test results.
 </IMPORTANT_REMINDER>

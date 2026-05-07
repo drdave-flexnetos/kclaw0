@@ -13,11 +13,11 @@
 | P2 | B | Create subagent role profiles | COMPLETE | - |
 | P2 | A | Add fingerprinting to track file changes | COMPLETE | - |
 | P2 | A | Add staleness detection for memory files | COMPLETE | fingerprinting |
-| P3 | B | Implement cost tracking | PENDING | - |
+| P3 | B | Implement cost tracking | COMPLETE | - |
 | P3 | C | Add checkpoint/resume to conversations | COMPLETE | self-upgrade-pipeline |
-| P3 | C | Add structured event logging | PENDING | event system |
-| P4 | D | Multi-provider LLM abstraction | FUTURE | provider-strategy.md |
-| P4 | D | Docker execution environment | FUTURE | - |
+| P3 | C | Add structured event logging | COMPLETE | event system |
+| P4 | D | Multi-provider LLM abstraction | IN-PROGRESS | provider-strategy.md |
+| P4 | D | Docker execution environment | COMPLETE | - |
 
 ---
 
