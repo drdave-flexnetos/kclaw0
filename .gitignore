@@ -12,6 +12,10 @@ venv/
 env/
 chromadb-env/
 
+# Embedded repositories (managed separately)
+mempalace/
+mempalace
+
 # Runtime state files (generated during operation)
 memory/change-log.ndjson
 memory/current-session.json
@@ -24,3 +28,7 @@ memory/staleness-state.json
 memory/steering-queue.json
 memory/cost-log.ndjson
 memory/checkpoints/
+memory/gitnexus-cache.json
+memory/mempalace-data/
+memory/mempalace-config/
+.gitnexus
