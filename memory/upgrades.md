@@ -16,6 +16,10 @@
 | 2026-05-07 | Created followup queue system | B | COMPLETE | Post-completion task processing |
 | 2026-05-07 | Created subagent role profiles | B | COMPLETE | 6 defined roles for specialized subagents |
 | 2026-05-07 | Created checkpoint/resume system | C | COMPLETE | Full checkpoint system with save/load/delete/prune/autosave, 18 passing tests, CLI interface |
+| 2026-05-07 | Created cost tracking system | B | COMPLETE | Token usage and API cost monitoring per session, 15 passing tests |
+| 2026-05-07 | Created Docker execution environment | D | COMPLETE | Containerized code execution with mock mode, 8 passing tests |
+| 2026-05-07 | Created multi-provider LLM abstraction | D | COMPLETE | Adapter pattern for Kimi/OpenAI/Anthropic/Gemini/Ollama, 119 passing tests |
+| 2026-05-07 | Built P5 swarm integration modules | B | COMPLETE | 3 subagent-built JS wrappers: ChromaDB (20 tests), GitNexus (18 tests), MemPalace (36 tests), all passing |
 
 ---
 
@@ -29,9 +33,9 @@
 
 ## Upgrade Statistics
 
-- **Total upgrades:** 14
+- **Total upgrades:** 18
 - **Type A (Knowledge):** 9
-- **Type B (Skill):** 5
+- **Type B (Skill):** 8
 - **Type C (Loop):** 1
-- **Type D (Infrastructure):** 0
+- **Type D (Infrastructure):** 2
 - **Success rate:** 100%
