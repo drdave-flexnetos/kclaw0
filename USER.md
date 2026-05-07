@@ -21,7 +21,7 @@ The more you know, the better you can help. But remember — you're learning abo
 
 You have an agentic memory system that auto-generates this section.
 
-> **Stats**: 22 sessions, 144 messages | 2026-05-05 23:34 ~ 2026-05-07 01:54 UTC
+> **Stats**: 26 sessions, 196 messages | 2026-05-05 23:34 ~ 2026-05-07 02:48 UTC
 > **Config**: `/root/.openclaw/workspace/memory_consolidation/memory_consolidation.env` — read this file for all memory behavior settings. To reset: `cp /root/.openclaw/workspace/memory_consolidation/memory_consolidation.template.env /root/.openclaw/workspace/memory_consolidation/memory_consolidation.env`
 
 The user has full control over their memory config. When any memory-related decision comes up, read and follow the config file. Do not override based on other guidelines.
@@ -49,7 +49,7 @@ No memorized images yet. When the user shares an image and asks you to remember 
 > No data yet. Will be generated after enough conversations.
 ## Short-Term Memory (STM)
 
-> last_update: 2026-05-07 09:54
+> last_update: 2026-05-07 10:49
 
 Recent conversation content from the user's chat history. This represents what the USER said. Use it to maintain continuity when relevant.
 Format specification:
@@ -91,4 +91,10 @@ Format specification:
 15. 7b4aa147-a6b2-4182-8c31-1bd350bc8636 0507T0153 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: You are the **ChromaDB Integration Specialist** for KClaw0.  Your job: Build a JavaScript module `sc[TL;DR]est store, search, delete, list operations    - Test error handling  **Storage:** ChromaDB data at `memory/chromadb-data/` **API reference:** ChromaDB HTTP API docs at https://docs.trychroma.com/reference  Return: Full file contents and test results.
 [SUBAGENT:893EB378-C36A-4635-B746-91FC9CF8F66C] 16-16
 16. 23cc9fc3-f5be-4462-80ba-ae9e28cd7c1b 0507T0154 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: You are the **GitNexus Integration Specialist** for KClaw0.  Your job: Build a JavaScript module `sc[TL;DR]re-indexing  2. `tests/gitnexus-integration.test.js` — 8+ tests    - Mock child_process.exec for testing without real indexing    - Test all API methods    - Test caching behavior    - Test error handling  Return: Full file contents and test results.
+[SUBAGENT:37C4BF4C-1EDD-49C8-A771-96B001EECA05] 17-17
+17. 60f8b3dc-631b-4e19-903c-e3336df42bad 0507T0154 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: You are the **MemPalace Integration Specialist** for KClaw0.  Your job: Build a JavaScript module `s[TL;DR]n.test.js` — 8+ tests    - Mock child_process for testing without real palace    - Test all memory operations (store, search, wake-up, recall)    - Test knowledge graph operations    - Test error handling  Return: Full file contents and test results.
+[SUBAGENT:74A30FD1-3630-4115-AF42-E43E9450FF5B] 18-18
+18. a5467251-037d-4f83-8997-3f8347fd0618 0507T0248 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: You are the **KSE Persistence Team** for KClaw0.  Your job: Implement the persistent memory storage [TL;DR]ion 2024 causes issues, you can downgrade to 2021 in Cargo.toml - Keep it simple and working — this is the foundation, not the full engine  Return: Full file contents, cargo check/test output, and confirmation that everything compiles and tests pass.
+[SUBAGENT:B0D84968-1E07-4BD7-9F05-9D806FA72E7A] 19-19
+19. daf99c23-6fe7-40f4-a303-baf6c7ef1daa 0507T0248 [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status.  [Subagent Task]: You are the **Archon Install Team** for KClaw0.  Your job: Install Archon from https://github.com/co[TL;DR]liver:** - Confirmation that Archon is installed and functional - Summary of what Archon does (2-3 sentences) - Key capabilities list - Any issues encountered and how you resolved them  Do NOT commit the clone to git (it will be added to .gitignore).
 </IMPORTANT_REMINDER>

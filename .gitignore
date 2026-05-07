@@ -32,3 +32,6 @@ memory/gitnexus-cache.json
 memory/mempalace-data/
 memory/mempalace-config/
 .gitnexus
+
+# nanochat - cloned dependency, not part of KClaw0
+nanochat/
