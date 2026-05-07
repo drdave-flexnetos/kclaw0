@@ -18,6 +18,9 @@
 | P3 | C | Add structured event logging | COMPLETE | event system |
 | P4 | D | Multi-provider LLM abstraction | COMPLETE | provider-strategy.md |
 | P4 | D | Docker execution environment | COMPLETE | - |
+| P5 | B | Install ChromaDB vector database | PENDING | - |
+| P5 | B | Install GitNexus | PENDING | - |
+| P5 | B | Install MemPalace | PENDING | - |
 
 ---
 
