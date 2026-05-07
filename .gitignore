@@ -5,3 +5,16 @@ memory.backup.*/
 node_modules/
 *.log
 KSE/target/
+
+# Runtime state files (generated during operation)
+memory/change-log.ndjson
+memory/current-session.json
+memory/docker-executions.ndjson
+memory/event-log.ndjson
+memory/fingerprints.json
+memory/followup-queue.json
+memory/loop-history.json
+memory/staleness-state.json
+memory/steering-queue.json
+memory/cost-log.ndjson
+memory/checkpoints/
