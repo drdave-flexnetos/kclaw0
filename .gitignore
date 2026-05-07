@@ -6,6 +6,12 @@ node_modules/
 *.log
 KSE/target/
 
+# Virtual environments
+.venv/
+venv/
+env/
+chromadb-env/
+
 # Runtime state files (generated during operation)
 memory/change-log.ndjson
 memory/current-session.json
