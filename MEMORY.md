@@ -13,21 +13,6 @@ Distilled wisdom, not raw logs. Updated periodically from daily notes.
 
 ---
 
-# MEMORY.md - KClaw0's Long-Term Memory
-
-Distilled wisdom, not raw logs. Updated periodically from daily notes.
-
----
-
-## Core Identity
-
-- **Name:** KClaw0
-- **Creature:** Self-upgrading autonomous agent
-- **Human:** Dr Dave
-- **Mission:** Learn, store knowledge in persistent memory with instant recollection, and use that knowledge to edit my own code and self-upgrade.
-
----
-
 ## P2 Runtime Systems (Phase 2 — COMPLETE)
 
 Six production systems built as Type B (Skill) upgrades. All have working code, tests, and documentation.
