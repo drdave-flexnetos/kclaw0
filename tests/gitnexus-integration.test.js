@@ -18,6 +18,8 @@ const {
   removeRepo,
   getCachedInfo,
   clearCache,
+  isReal,
+  findGitNexus,
   _internals,
 } = require('../scripts/gitnexus-integration.js');
 
@@ -417,6 +419,65 @@ async function testGetCachedInfo() {
   clearCache();
 }
 
+async function testIsReal() {
+  console.log('\n🔌 Testing isReal...');
+  execCallCount = 0;
+
+  const mock = mockExec('1.6.5', '', null, 0);
+  installMockExec(mock);
+
+  const detected = await isReal();
+  assert(detected === true, 'Should detect real gitnexus when version prints');
+  assert(execCallCount === 1, 'Should have called exec once');
+
+  restoreExec();
+}
+
+async function testIsRealNotFound() {
+  console.log('\n🔌 Testing isReal when not found...');
+  execCallCount = 0;
+
+  const mock = mockExec('', 'command not found', 'Command failed', 127);
+  installMockExec(mock);
+
+  const detected = await isReal();
+  assert(detected === false, 'Should return false when gitnexus missing');
+
+  restoreExec();
+}
+
+async function testFindGitNexus() {
+  console.log('\n🔌 Testing findGitNexus...');
+  execCallCount = 0;
+
+  const mock = mockExec('1.6.5', '', null, 0);
+  installMockExec(mock);
+
+  const info = await findGitNexus();
+  assert(info.detected === true, 'Should report detected=true');
+  assert(info.version === '1.6.5', 'Should capture version');
+  assert(info.source.includes('github.com'), 'Should include source URL');
+  assert(info.install.includes('npm'), 'Should include install command');
+  assert(info.docs.includes('github.com'), 'Should include docs URL');
+
+  restoreExec();
+}
+
+async function testFindGitNexusMissing() {
+  console.log('\n🔌 Testing findGitNexus when missing...');
+  execCallCount = 0;
+
+  const mock = mockExec('', 'command not found', 'Command failed', 127);
+  installMockExec(mock);
+
+  const info = await findGitNexus();
+  assert(info.detected === false, 'Should report detected=false');
+  assert(info.version === null, 'Should have null version when missing');
+  assert(info.source.includes('github.com'), 'Should still include source URL');
+
+  restoreExec();
+}
+
 // ── Test runner ─────────────────────────────────────────────────────────────
 
 async function runAllTests() {
@@ -446,6 +507,12 @@ async function runAllTests() {
     await testRemoveRepo();
     await testGenerateWiki();
     await testGetCachedInfo();
+
+    // Real-detection helpers
+    await testIsReal();
+    await testIsRealNotFound();
+    await testFindGitNexus();
+    await testFindGitNexusMissing();
 
     console.log('\n🎉 All tests passed!');
   } catch (err) {

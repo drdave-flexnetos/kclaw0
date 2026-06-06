@@ -437,6 +437,41 @@ async function removeRepo(target) {
 }
 
 /**
+ * Detect whether a real GitNexus CLI is available.
+ * Tries `npx gitnexus --version` and returns true if it exits 0.
+ *
+ * @returns {Promise<boolean>}
+ */
+async function isReal() {
+  try {
+    const result = await execAsync('npx gitnexus --version', {
+      timeout: 10000,
+      env: { ...process.env, FORCE_COLOR: '0', NO_COLOR: '1' },
+    });
+    return result.stdout.trim().length > 0 && !result.stdout.includes('error');
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * Return information about where to obtain GitNexus.
+ * Also reports whether a local copy was detected.
+ *
+ * @returns {Promise<object>}
+ */
+async function findGitNexus() {
+  const detected = await isReal();
+  return {
+    detected,
+    source: 'https://github.com/abhigyanpatwari/GitNexus',
+    install: 'npm install -g gitnexus  # or npx gitnexus',
+    docs: 'https://github.com/abhigyanpatwari/GitNexus#readme',
+    version: detected ? (await execAsync('npx gitnexus --version', { timeout: 10000 })).stdout.trim() : null,
+  };
+}
+
+/**
  * Get cached repo info
  *
  * @param {string} repoPath
@@ -620,6 +655,8 @@ module.exports = {
   removeRepo,
   getCachedInfo,
   clearCache,
+  isReal,
+  findGitNexus,
   // Internal helpers exposed for testing
   _internals: {
     loadCache,

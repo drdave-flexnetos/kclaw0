@@ -210,6 +210,23 @@ test('isRunning returns true when heartbeat responds', async () => {
   assertEqual(httpRequests[0].url.includes('/api/v2/heartbeat'), true, 'heartbeat path');
 });
 
+// 3b. isReal - server up
+test('isReal returns true when heartbeat responds with object', async () => {
+  const client = new ChromaClient({ autoStart: false });
+  queueResponse(200, { status: 'ok' });
+  const real = await client.isReal();
+  assertEqual(real, true, 'should be real');
+  assertEqual(httpRequests.length, 1, 'one HTTP request');
+});
+
+// 3c. isReal - server down (no response)
+test('isReal returns false when heartbeat fails', async () => {
+  const client = new ChromaClient({ autoStart: false });
+  // Don't queue response → request will error → isReal returns false
+  const real = await client.isReal();
+  assertEqual(real, false, 'should not be real');
+});
+
 // 4. isRunning - server down
 test('isRunning returns false when heartbeat fails', async () => {
   const client = new ChromaClient({ autoStart: false });

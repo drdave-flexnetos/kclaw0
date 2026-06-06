@@ -6,8 +6,16 @@
  * Manages the ChromaDB server lifecycle, generates embeddings via Python,
  * and exposes a clean JS API for store/search/delete/list operations.
  *
+ * To enable real mode you must install ChromaDB:
+ *   Python: pip install chromadb
+ *   CLI:    chroma run --path <data-dir> (provided by Python package)
+ *
+ * If Python chromadb is not installed, `_generateEmbeddings` will throw
+ * and the client falls back to mock-only behaviour.
+ *
  * Core API:
  *   new ChromaClient(options)       → Create client instance
+ *   await client.isReal()           → Check if a real server is reachable
  *   await client.start()            → Start ChromaDB server (if not running)
  *   await client.stop()             → Stop managed server
  *   await client.store(text, metadata, collection) → Store text with embedding
@@ -131,16 +139,36 @@ class ChromaClient {
 
   // ── Server Lifecycle ───────────────────────────────────────────────────────
 
+/**
+ * Check if a real ChromaDB server is available (responds to heartbeat
+ * with expected API format). Returns `false` when the server is not
+ * running or the response is not a valid ChromaDB v2 heartbeat.
+ *
+ * To enable real mode you must install ChromaDB:
+ *   Python: pip install chromadb
+ *   CLI:    chroma run --path <data-dir> (provided by Python package)
+ *
+ * If Python chromadb is not installed, `_generateEmbeddings` will throw
+ * and the client falls back to mock-only behaviour.
+ */
+async isReal() {
+  try {
+    const res = await httpRequest(this.baseUrl, '/api/v2/heartbeat', {
+      method: 'GET',
+      timeout: 3000,
+    });
+    return res.status === 200 && res.body && typeof res.body === 'object';
+  } catch {
+    return false;
+  }
+}
+
   /**
-   * Check if the ChromaDB server is responding.
+   * Backward-compatible alias for `isReal()`.
+   * Checks whether the ChromaDB server responds to the heartbeat endpoint.
    */
   async isRunning() {
-    try {
-      const res = await httpRequest(this.baseUrl, '/api/v2/heartbeat', { method: 'GET', timeout: 3000 });
-      return res.status === 200;
-    } catch {
-      return false;
-    }
+    return this.isReal();
   }
 
   /**
@@ -331,6 +359,9 @@ class ChromaClient {
   /**
    * Generate embeddings for one or more texts using ChromaDB's
    * DefaultEmbeddingFunction via a Python subprocess.
+   *
+   * Requires Python chromadb to be installed:
+   *   pip install chromadb
    *
    * This keeps the model loaded in a single Python call for the batch,
    * avoiding repeated cold-start overhead.
