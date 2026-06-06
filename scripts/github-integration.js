@@ -199,6 +199,156 @@ async function workflow(branchName, commitMessage, prTitle, prBody) {
   return results;
 }
 
+// ── Label State Machine ────────────────────────────────────────────
+
+function isMockMode() {
+  try {
+    const config = loadConfig();
+    return !config.token || !config.owner || !config.repo;
+  } catch {
+    return true;
+  }
+}
+
+async function getLabels(issueNumber) {
+  if (isMockMode()) {
+    return ['auto', 'p1'];
+  }
+  const config = loadConfig();
+  const response = await fetch(
+    `https://api.github.com/repos/${config.owner}/${config.repo}/issues/${issueNumber}/labels`,
+    {
+      headers: {
+        Authorization: `token ${config.token}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+    }
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`GitHub API error ${response.status}: ${text}`);
+  }
+  const data = await response.json();
+  return data.map(l => l.name);
+}
+
+async function setLabels(issueNumber, labels) {
+  if (isMockMode()) {
+    return { success: true, labels };
+  }
+  const config = loadConfig();
+  const response = await fetch(
+    `https://api.github.com/repos/${config.owner}/${config.repo}/issues/${issueNumber}/labels`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${config.token}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ labels }),
+    }
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`GitHub API error ${response.status}: ${text}`);
+  }
+  return { success: true, labels };
+}
+
+async function addLabel(issueNumber, label) {
+  if (isMockMode()) {
+    return { success: true, added: label };
+  }
+  const config = loadConfig();
+  const response = await fetch(
+    `https://api.github.com/repos/${config.owner}/${config.repo}/issues/${issueNumber}/labels`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `token ${config.token}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ labels: [label] }),
+    }
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`GitHub API error ${response.status}: ${text}`);
+  }
+  return { success: true, added: label };
+}
+
+async function removeLabel(issueNumber, label) {
+  if (isMockMode()) {
+    return { success: true, removed: label };
+  }
+  const config = loadConfig();
+  const response = await fetch(
+    `https://api.github.com/repos/${config.owner}/${config.repo}/issues/${issueNumber}/labels/${encodeURIComponent(label)}`,
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: `token ${config.token}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+    }
+  );
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`GitHub API error ${response.status}: ${text}`);
+  }
+  return { success: true, removed: label };
+}
+
+function getStateFromLabels(labels) {
+  const stateMap = {
+    'auto': { state: 'auto', confidence: 0.9 },
+    'holdout': { state: 'holdout', confidence: 0.7 },
+    'needs-review': { state: 'needs-review', confidence: 0.6 },
+    'verified': { state: 'verified', confidence: 0.85 },
+    'blocked': { state: 'blocked', confidence: 1.0 },
+  };
+  const priorityOrder = ['blocked', 'holdout', 'needs-review', 'verified', 'auto'];
+
+  const matched = priorityOrder.filter(p => labels.includes(p));
+  if (matched.length === 0) {
+    return { state: 'default', confidence: 0.5 };
+  }
+
+  const highest = matched[0];
+  return { ...stateMap[highest] };
+}
+
+function transitionLabels(currentLabels, action) {
+  const labels = [...currentLabels];
+
+  switch (action) {
+    case 'start': {
+      const stateLabels = ['auto', 'holdout', 'needs-review', 'verified', 'blocked'];
+      if (!labels.some(l => stateLabels.includes(l))) {
+        labels.push('auto');
+      }
+      return labels;
+    }
+    case 'complete': {
+      return labels.map(l => l === 'auto' ? 'needs-review' : l);
+    }
+    case 'pass': {
+      return labels.map(l => l === 'holdout' ? 'verified' : l);
+    }
+    case 'fail': {
+      if (!labels.includes('blocked')) {
+        labels.push('blocked');
+      }
+      return labels;
+    }
+    default:
+      return labels;
+  }
+}
+
 // ── CLI ────────────────────────────────────────────────────────────
 
 async function main() {
@@ -295,4 +445,10 @@ module.exports = {
   loadConfig,
   setExec,
   resetExec,
+  getLabels,
+  setLabels,
+  addLabel,
+  removeLabel,
+  getStateFromLabels,
+  transitionLabels,
 };

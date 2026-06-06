@@ -14,6 +14,12 @@ const {
   loadConfig,
   setExec,
   resetExec,
+  getLabels,
+  setLabels,
+  addLabel,
+  removeLabel,
+  getStateFromLabels,
+  transitionLabels,
 } = require('../scripts/github-integration.js');
 
 const fs = require('fs');
@@ -264,6 +270,102 @@ async function testRepoStatusClean() {
   resetExec();
 }
 
+// ── Label State Machine Tests ───────────────────────────────────────
+
+async function testGetStateFromLabelsAuto() {
+  console.log('\n🏷️ Testing getStateFromLabels returns auto...');
+  const result = getStateFromLabels(['auto']);
+  assert(result.state === 'auto', 'Should return auto for [auto]');
+  assert(result.confidence === 0.9, 'Should have confidence 0.9');
+}
+
+async function testGetStateFromLabelsHoldout() {
+  console.log('\n🏷️ Testing getStateFromLabels returns holdout...');
+  const result = getStateFromLabels(['holdout', 'p2']);
+  assert(result.state === 'holdout', 'Should return holdout for [holdout]');
+  assert(result.confidence === 0.7, 'Should have confidence 0.7');
+}
+
+async function testGetStateFromLabelsBlocked() {
+  console.log('\n🏷️ Testing getStateFromLabels returns blocked (highest priority)...');
+  const result = getStateFromLabels(['blocked', 'auto', 'holdout']);
+  assert(result.state === 'blocked', 'Should return blocked (highest priority)');
+  assert(result.confidence === 1.0, 'Should have confidence 1.0');
+}
+
+async function testGetStateFromLabelsDefault() {
+  console.log('\n🏷️ Testing getStateFromLabels returns default...');
+  const result = getStateFromLabels([]);
+  assert(result.state === 'default', 'Should return default for empty labels');
+  assert(result.confidence === 0.5, 'Should have confidence 0.5');
+  const result2 = getStateFromLabels(['p1', 'enhancement']);
+  assert(result2.state === 'default', 'Should return default for non-state labels');
+}
+
+async function testTransitionLabelsStart() {
+  console.log('\n🏷️ Testing transitionLabels start adds auto...');
+  const result = transitionLabels(['p1'], 'start');
+  assert(result.includes('auto'), 'Should add auto when no state label');
+  assert(result.includes('p1'), 'Should keep existing labels');
+}
+
+async function testTransitionLabelsComplete() {
+  console.log('\n🏷️ Testing transitionLabels complete moves to needs-review...');
+  const result = transitionLabels(['auto', 'p1'], 'complete');
+  assert(result.includes('needs-review'), 'Should replace auto with needs-review');
+  assert(!result.includes('auto'), 'Should remove auto');
+  assert(result.includes('p1'), 'Should keep other labels');
+}
+
+async function testTransitionLabelsPass() {
+  console.log('\n🏷️ Testing transitionLabels pass moves holdout to verified...');
+  const result = transitionLabels(['holdout', 'p1'], 'pass');
+  assert(result.includes('verified'), 'Should replace holdout with verified');
+  assert(!result.includes('holdout'), 'Should remove holdout');
+  assert(result.includes('p1'), 'Should keep other labels');
+}
+
+async function testTransitionLabelsFail() {
+  console.log('\n🏷️ Testing transitionLabels fail adds blocked...');
+  const result = transitionLabels(['auto', 'p1'], 'fail');
+  assert(result.includes('blocked'), 'Should add blocked');
+  assert(result.includes('auto'), 'Should keep existing labels');
+  assert(result.includes('p1'), 'Should keep p1');
+}
+
+async function testLabelPriority() {
+  console.log('\n🏷️ Testing label priority: blocked > holdout > auto...');
+  const blockedOverHoldout = getStateFromLabels(['holdout', 'blocked']);
+  assert(blockedOverHoldout.state === 'blocked', 'blocked should outrank holdout');
+  const holdoutOverAuto = getStateFromLabels(['auto', 'holdout']);
+  assert(holdoutOverAuto.state === 'holdout', 'holdout should outrank auto');
+  const needsReviewOverVerified = getStateFromLabels(['verified', 'needs-review']);
+  assert(needsReviewOverVerified.state === 'needs-review', 'needs-review should outrank verified');
+  const verifiedOverAuto = getStateFromLabels(['auto', 'verified']);
+  assert(verifiedOverAuto.state === 'verified', 'verified should outrank auto');
+}
+
+async function testMockLabelMode() {
+  console.log('\n🏷️ Testing mock label mode without GITHUB_TOKEN...');
+  removeConfigFile();
+
+  const labels = await getLabels(1);
+  assert(labels.length === 2, 'Mock getLabels should return 2 labels');
+  assert(labels.includes('auto'), 'Mock labels should include auto');
+  assert(labels.includes('p1'), 'Mock labels should include p1');
+
+  const setResult = await setLabels(1, ['auto', 'blocked']);
+  assert(setResult.success === true, 'Mock setLabels should succeed');
+
+  const addResult = await addLabel(1, 'new-label');
+  assert(addResult.success === true, 'Mock addLabel should succeed');
+  assert(addResult.added === 'new-label', 'Should return added label');
+
+  const removeResult = await removeLabel(1, 'p1');
+  assert(removeResult.success === true, 'Mock removeLabel should succeed');
+  assert(removeResult.removed === 'p1', 'Should return removed label');
+}
+
 // ── Runner ─────────────────────────────────────────────────────────
 
 async function testAll() {
@@ -283,6 +385,16 @@ async function testAll() {
     testFullWorkflow,
     testRepoStatus,
     testRepoStatusClean,
+    testGetStateFromLabelsAuto,
+    testGetStateFromLabelsHoldout,
+    testGetStateFromLabelsBlocked,
+    testGetStateFromLabelsDefault,
+    testTransitionLabelsStart,
+    testTransitionLabelsComplete,
+    testTransitionLabelsPass,
+    testTransitionLabelsFail,
+    testLabelPriority,
+    testMockLabelMode,
   ];
 
   for (const t of tests) {

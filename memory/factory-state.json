@@ -1,0 +1,12 @@
+{
+  "governanceHashes": {
+    "mission": "eafe86925b29fad74944907469d8c6409ef4b37ecda0f8bce010730ca3495015",
+    "rules": "6080337db55a629ce9f9fc447e14ed401ba168c8808ccbf6bb00961b340a1f01",
+    "style": "cd1c77669338c2751ded5d7717db3ed677571f0e368173f96a194bd6dc67ebdd"
+  },
+  "budgetUsed": {
+    "tokens": 0,
+    "usd": 0
+  },
+  "lastValidation": "2026-06-06T17:34:24.268Z"
+}

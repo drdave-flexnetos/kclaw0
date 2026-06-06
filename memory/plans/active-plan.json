@@ -1,6 +1,6 @@
 {
-  "plan-1780761406377-4427": {
-    "planId": "plan-1780761406377-4427",
+  "plan-1780767370087-7666": {
+    "planId": "plan-1780767370087-7666",
     "goal": "test persistence",
     "goalKeywords": [
       "test",
@@ -8,12 +8,12 @@
     ],
     "constraints": {},
     "root": {
-      "id": "plan-1780761406377-4427",
+      "id": "plan-1780767370087-7666",
       "state": "root",
       "action": null,
       "children": [
         {
-          "id": "plan-1780761406377-4427-act-root-0-0",
+          "id": "plan-1780767370087-7666-act-root-0-0",
           "state": "root+delegate",
           "action": {
             "type": "delegate",
@@ -24,7 +24,7 @@
           },
           "children": [
             {
-              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-0",
+              "id": "plan-1780767370087-7666-act-root-0-0-act-root+delegate-1-0",
               "state": "root+delegate+delegate",
               "action": {
                 "type": "delegate",
@@ -39,7 +39,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-1",
+              "id": "plan-1780767370087-7666-act-root-0-0-act-root+delegate-1-1",
               "state": "root+delegate+research",
               "action": {
                 "type": "research",
@@ -54,7 +54,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-2",
+              "id": "plan-1780767370087-7666-act-root-0-0-act-root+delegate-1-2",
               "state": "root+delegate+verify",
               "action": {
                 "type": "verify",
@@ -69,7 +69,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-3",
+              "id": "plan-1780767370087-7666-act-root-0-0-act-root+delegate-1-3",
               "state": "root+delegate+deploy",
               "action": {
                 "type": "deploy",
@@ -89,7 +89,7 @@
           "depth": 1
         },
         {
-          "id": "plan-1780761406377-4427-act-root-0-1",
+          "id": "plan-1780767370087-7666-act-root-0-1",
           "state": "root+retry",
           "action": {
             "type": "retry",
@@ -100,7 +100,7 @@
           },
           "children": [
             {
-              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-0",
+              "id": "plan-1780767370087-7666-act-root-0-1-act-root+retry-1-0",
               "state": "root+retry+retry",
               "action": {
                 "type": "retry",
@@ -115,7 +115,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-1",
+              "id": "plan-1780767370087-7666-act-root-0-1-act-root+retry-1-1",
               "state": "root+retry+deploy",
               "action": {
                 "type": "deploy",
@@ -130,7 +130,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-2",
+              "id": "plan-1780767370087-7666-act-root-0-1-act-root+retry-1-2",
               "state": "root+retry+delegate",
               "action": {
                 "type": "delegate",
@@ -145,7 +145,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-3",
+              "id": "plan-1780767370087-7666-act-root-0-1-act-root+retry-1-3",
               "state": "root+retry+retry",
               "action": {
                 "type": "retry",
@@ -165,7 +165,7 @@
           "depth": 1
         },
         {
-          "id": "plan-1780761406377-4427-act-root-0-2",
+          "id": "plan-1780767370087-7666-act-root-0-2",
           "state": "root+deploy",
           "action": {
             "type": "deploy",
@@ -176,7 +176,7 @@
           },
           "children": [
             {
-              "id": "plan-1780761406377-4427-act-root-0-2-act-root+deploy-1-0",
+              "id": "plan-1780767370087-7666-act-root-0-2-act-root+deploy-1-0",
               "state": "root+deploy+execute",
               "action": {
                 "type": "execute",
@@ -191,7 +191,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-2-act-root+deploy-1-1",
+              "id": "plan-1780767370087-7666-act-root-0-2-act-root+deploy-1-1",
               "state": "root+deploy+delegate",
               "action": {
                 "type": "delegate",
@@ -211,7 +211,7 @@
           "depth": 1
         },
         {
-          "id": "plan-1780761406377-4427-act-root-0-3",
+          "id": "plan-1780767370087-7666-act-root-0-3",
           "state": "root+deploy",
           "action": {
             "type": "deploy",
@@ -222,7 +222,7 @@
           },
           "children": [
             {
-              "id": "plan-1780761406377-4427-act-root-0-3-act-root+deploy-1-0",
+              "id": "plan-1780767370087-7666-act-root-0-3-act-root+deploy-1-0",
               "state": "root+deploy+execute",
               "action": {
                 "type": "execute",
@@ -237,7 +237,7 @@
               "depth": 2
             },
             {
-              "id": "plan-1780761406377-4427-act-root-0-3-act-root+deploy-1-1",
+              "id": "plan-1780767370087-7666-act-root-0-3-act-root+deploy-1-1",
               "state": "root+deploy+delegate",
               "action": {
                 "type": "delegate",
@@ -339,8 +339,8 @@
     ],
     "executedSteps": [],
     "status": "active",
-    "createdAt": "2026-06-06T15:56:46.378Z",
-    "updatedAt": "2026-06-06T15:56:46.378Z",
+    "createdAt": "2026-06-06T17:36:10.087Z",
+    "updatedAt": "2026-06-06T17:36:10.087Z",
     "numSimulations": 5,
     "maxDepth": 2
   }
