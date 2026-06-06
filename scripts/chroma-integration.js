@@ -383,28 +383,51 @@ json.dump([[float(v) for v in e] for e in embeddings], sys.stdout)
       ? path.join(this.venvPath, 'bin', 'python')
       : this.pythonPath;
 
-    let stdout, stderr;
-    try {
-      const result = await execFileAsync(pythonExec, ['-c', pythonScript], {
-        input: JSON.stringify(texts),
-        maxBuffer: 10 * 1024 * 1024, // 10MB
-        timeout: 30000,
-        env: this.venvPath
-          ? { ...process.env, PATH: `${path.join(this.venvPath, 'bin')}:${process.env.PATH}` }
-          : process.env,
-      });
-      stdout = result.stdout;
-      stderr = result.stderr;
-    } catch (err) {
-      if (err.stderr) stderr = err.stderr;
-      throw new Error(`Embedding generation failed: ${err.message}. stderr: ${stderr || 'none'}`);
-    }
+    const env = this.venvPath
+      ? { ...process.env, PATH: `${path.join(this.venvPath, 'bin')}:${process.env.PATH}` }
+      : process.env;
 
-    try {
-      return JSON.parse(stdout);
-    } catch {
-      throw new Error(`Failed to parse embedding output: ${stdout}. stderr: ${stderr || 'none'}`);
-    }
+    return new Promise((resolve, reject) => {
+      const child = spawn(pythonExec, ['-c', pythonScript], {
+        env,
+        stdio: ['pipe', 'pipe', 'pipe'],
+      });
+
+      let stdout = '';
+      let stderr = '';
+
+      child.stdout.on('data', (d) => (stdout += d));
+      child.stderr.on('data', (d) => (stderr += d));
+
+      child.on('error', (err) => {
+        reject(new Error(`Embedding generation failed: ${err.message}`));
+      });
+
+      child.on('close', (code) => {
+        if (code !== 0) {
+          reject(new Error(`Embedding generation failed (exit ${code}): ${stderr || 'no stderr'}`));
+          return;
+        }
+        try {
+          const embeddings = JSON.parse(stdout);
+          resolve(embeddings);
+        } catch {
+          reject(new Error(`Failed to parse embedding output: ${stdout}. stderr: ${stderr || 'none'}`));
+        }
+      });
+
+      // Set a timeout for the entire operation
+      const timeout = setTimeout(() => {
+        child.kill('SIGTERM');
+        setTimeout(() => child.kill('SIGKILL'), 3000);
+        reject(new Error('Embedding generation timed out after 30000ms'));
+      }, 30000);
+
+      child.on('close', () => clearTimeout(timeout));
+
+      child.stdin.write(JSON.stringify(texts));
+      child.stdin.end();
+    });
   }
 
   // ── Data Operations ──────────────────────────────────────────────────────

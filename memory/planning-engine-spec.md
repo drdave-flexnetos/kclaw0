@@ -176,10 +176,11 @@ await planningEngine.replan(planId, { newConstraints: {...} });
    - Integration with cost-tracker
    - 8+ tests
 
-4. **Phase 4**: Integration
-   - Hook into agent loop (before tool selection)
-   - Auto-plan for complex goals (>3 steps)
-   - Store plans in memory/plans/
+4. **Phase 4**: Integration (COMPLETE)
+   - Hook into agent loop via `scripts/agent-loop.js`
+   - Auto-plan for complex goals (>=2 action words or >12 words)
+   - Store plans in `memory/plans/`
+   - 79 integration tests in `tests/agent-loop.test.js`
 
 ## Files to Create
 

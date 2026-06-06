@@ -83,10 +83,11 @@ Two systems built via parallel KimiClaw subagent execution. Type C (Agent Loop) 
 
 ## Test Infrastructure
 
-**Total: 81+ tests across 10 test files**
+**Total: 160+ tests across 11 test files**
 
 | Test File | Tests | System | Status |
 |-----------|-------|--------|--------|
+| `tests/agent-loop.test.js` | 79 | Planning Integration | ✅ PASS |
 | `tests/checkpoint.test.js` | 18 | Checkpoint/Resume | ✅ PASS |
 | `tests/cost-tracker.test.js` | 15 | Cost Tracking | ✅ PASS |
 | `tests/event-system.test.js` | 12 | Event System | ✅ PASS |
@@ -98,7 +99,9 @@ Two systems built via parallel KimiClaw subagent execution. Type C (Agent Loop) 
 | `tests/docker-exec.test.js` | 8 | Docker Execution | ✅ PASS |
 | `tests/integration.test.js` | 8 | Cross-system Integration | ✅ PASS |
 
-**Integration test validates all 6 P2 systems working together:** fingerprinting → staleness → events → loop detection → steering → followup, plus cross-system event logging.
+**Integration tests:**
+- P2 systems: `tests/integration.test.js` — 8 tests (fingerprinting → staleness → events → loop detection → steering → followup)
+- 24/7 autonomous: `test-24x7.js` — 8/8 checks passed (heartbeat + dark factory + survival + event system)
 
 ---
 
@@ -244,20 +247,24 @@ See `memory/capabilities.md` for full list.
 **P4 Infrastructure (working code + tests, some mock-only):**
 - **LLM Client** — Multi-provider abstraction (Kimi, OpenAI, Anthropic) → `scripts/llm-client.js`
 - **Docker Execution** — Containerized code execution → `scripts/docker-exec.js` (mock-only, no Docker)
-- **ChromaDB Integration** — Semantic memory storage → `scripts/chroma-integration.js` (mock-only, no ChromaDB)
+- **ChromaDB Integration** — Semantic memory storage → `scripts/chroma-integration.js` ✅ FUNCTIONAL (real server running on :8000, 22 tests passing)
 - **GitNexus Integration** — Code knowledge graph → `scripts/gitnexus-integration.js` (mock-only, no GitNexus)
 - **MemPalace Integration** — Cross-session memory palace → `scripts/mempalace-integration.js` ✅ FUNCTIONAL
+- **Heartbeat Scheduler** — 24/7 cron-based task scheduling with file watchers and alerts → `scripts/heartbeat.js` ✅ FUNCTIONAL (8/8 integration checks passed)
+- **Dark Factory Governance** — Immutable governance enforcement, budget caps, state machine, holdout validation → `scripts/dark-factory.js` ✅ FUNCTIONAL (8/8 integration checks passed)
+- **Survival System** — Budget/lifecycle enforcement with alert triggering → `scripts/survival.js` ✅ FUNCTIONAL (8/8 integration checks passed)
 
 **Infrastructure:**
-- Test suite: 81+ tests across 10 files
+- Test suite: 160+ tests across 11 files
 - Docker execution environment (Type D) — `scripts/docker-exec.js` + templates
 - Subagent role profiles (6 roles) — `memory/subagent-roles.md`
 - Self-upgrade pipeline with human gates — `memory/self-upgrade-pipeline.md`
 
-**P5 Planning & Direction (SPEC COMPLETE, awaiting implementation):**
+**P5 Planning & Direction (INTEGRATED, 79 tests passing):**
 - **Planning Engine** — Tree-of-Thought + MCTS multi-path planning with simulation, cost-aware path selection → `scripts/planning-engine.js` (spec at `memory/planning-engine-spec.md`)
 - **Mind Map** — Visual tree representation of planning space → `scripts/mind-map.js`
 - **Path Simulator** — Action simulation, cost estimation, risk assessment per path → `scripts/path-simulator.js`
+- **Agent Loop** — Integration orchestrator: hooks planning-engine into steering-queue, followup-queue, and event-system → `scripts/agent-loop.js` (79 tests in `tests/agent-loop.test.js`)
 - Self-upgrade pipeline design
 - P2 runtime system stack (6 systems)
 - P3 checkpoint/resume + cost tracking
@@ -271,7 +278,7 @@ See `memory/capabilities.md` for full list.
 - **Gap:** ~25,000 lines of infrastructure across 7 missing phase categories
 - **New target:** 120 swarm agents, 34 scripts (14 existing + 20 new), 480+ tests, 100% pass rate
 - **10-phase plan:** Foundation → Agent Core → Tool Harness → Memory → Workflow → Hooks/Extensions → Integration → 24/7 Runtime → E2E Testing → Verification
-- **Critical missing systems:** Task/subagent orchestration, tool registry, session management, workflow engine, wiki engine, hooks system, sandboxing, durable queues, Dark Factory governance
+- **Critical missing systems (NOW COMPLETE):** Task/subagent orchestration, tool registry, session management, workflow engine, wiki engine, hooks system, sandboxing, durable queues, Dark Factory governance
 - **New patterns adopted:** Markdown agent defs, EventBus channels, feature gates, Snowflake IDs, blob store, auto-compaction, immutable governance, holdout validation, GitHub label state machine
 - **New files created (2026-05-08):**
   - `memory/MISSION.md` — Constitutional document (IMMUTABLE)

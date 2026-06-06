@@ -1,0 +1,77 @@
+name: KClaw0 Verification CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    name: Verify All Systems
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install chromadb
+
+      - name: Start ChromaDB
+        run: |
+          chroma run --path ./memory/chromadb-data &
+          sleep 5
+          curl -s http://127.0.0.1:8000/api/v2/tenants/default_tenant/databases/default_database
+
+      - name: Run verification
+        run: node scripts/verify-commit.js
+
+      - name: Run all tests
+        run: |
+          node tests/agent-loop.test.js
+          node tests/chroma-integration.test.js
+          node tests/checkpoint.test.js
+          node tests/cost-tracker.test.js
+          node tests/event-system.test.js
+          node tests/loop-detection.test.js
+          node tests/steering-queue.test.js
+          node tests/followup-queue.test.js
+          node tests/fingerprint.test.js
+          node tests/staleness.test.js
+          node tests/docker-exec.test.js
+          node tests/integration.test.js
+
+      - name: Verify file integrity
+        run: |
+          test -f scripts/agent-loop.js
+          test -f scripts/heartbeat.js
+          test -f scripts/dark-factory.js
+          test -f scripts/chroma-integration.js
+          test -f scripts/event-system.js
+          test -f scripts/checkpoint.js
+          test -f scripts/cost-tracker.js
+          test -f scripts/planning-engine.js
+          test -f scripts/mind-map.js
+          test -f scripts/path-simulator.js
+          test -f scripts/loop-detection.js
+          test -f scripts/steering-queue.js
+          test -f scripts/followup-queue.js
+          test -f scripts/fingerprint.js
+          test -f scripts/staleness.js
+          test -f memory/MISSION.md
+          test -f memory/FACTORY_RULES.md
+          test -f memory/CLAUDE.md
+          echo "All critical files present"

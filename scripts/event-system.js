@@ -39,7 +39,8 @@ const VALID_EVENT_TYPES = [
   'subagent_spawn', 'subagent_result', 'subagent_error',
   'heartbeat', 'checkpoint', 'steering_injected',
   'followup_triggered', 'loop_detected', 'stale_files_found',
-  'upgrade_started', 'upgrade_complete', 'upgrade_failed',
+  'plan_created', 'plan_continued', 'plan_step_executed', 'plan_completed', 'plan_replanned',
+  'plan_selected', 'plan_failed', 'simulation_run', 'path_selected',
 ];
 
 /**
