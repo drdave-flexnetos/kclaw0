@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "startedAt": "2026-06-06T05:15:36.115Z",
+  "tasks": {
+    "error-task": {
+      "cronExpr": "* * * * *",
+      "nextRun": "2026-06-06T05:46:00.000Z",
+      "lastRun": "2026-06-06T05:44:06.778Z",
+      "enabled": true,
+      "metadata": {},
+      "createdAt": "2026-06-06T05:44:06.778Z"
+    }
+  },
+  "watchers": {},
+  "alerts": {},
+  "metrics": {
+    "task_count": 1,
+    "watcher_count": 0,
+    "alert_count": 0,
+    "uptime_minutes": 28
+  }
+}
