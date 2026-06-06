@@ -4,11 +4,11 @@
   "tasks": {
     "error-task": {
       "cronExpr": "* * * * *",
-      "nextRun": "2026-06-06T05:46:00.000Z",
-      "lastRun": "2026-06-06T05:44:06.778Z",
+      "nextRun": "2026-06-06T15:58:00.000Z",
+      "lastRun": "2026-06-06T15:56:41.954Z",
       "enabled": true,
       "metadata": {},
-      "createdAt": "2026-06-06T05:44:06.778Z"
+      "createdAt": "2026-06-06T15:56:41.954Z"
     }
   },
   "watchers": {},
@@ -17,6 +17,6 @@
     "task_count": 1,
     "watcher_count": 0,
     "alert_count": 0,
-    "uptime_minutes": 28
+    "uptime_minutes": 641
   }
 }

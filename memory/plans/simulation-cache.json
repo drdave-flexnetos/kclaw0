@@ -1,0 +1,19 @@
+{
+  "sim-eyJhY3Rpb25zIjpbeyJ0eXBlIjoic2Vh": {
+    "value": {
+      "terminalState": "success",
+      "overallSuccessProbability": 0.92,
+      "stepsSimulated": 1,
+      "outcomes": [
+        {
+          "type": "search",
+          "success": true,
+          "probability": 0.92,
+          "roll": 0.0003287070433876543,
+          "complexity": 1
+        }
+      ]
+    },
+    "timestamp": "2026-06-06T15:56:45.181Z"
+  }
+}

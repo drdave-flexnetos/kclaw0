@@ -1,0 +1,347 @@
+{
+  "plan-1780761406377-4427": {
+    "planId": "plan-1780761406377-4427",
+    "goal": "test persistence",
+    "goalKeywords": [
+      "test",
+      "persistence"
+    ],
+    "constraints": {},
+    "root": {
+      "id": "plan-1780761406377-4427",
+      "state": "root",
+      "action": null,
+      "children": [
+        {
+          "id": "plan-1780761406377-4427-act-root-0-0",
+          "state": "root+delegate",
+          "action": {
+            "type": "delegate",
+            "desc": "delegate to subagent",
+            "cost": 1,
+            "baseRate": 0.6,
+            "id": "act-root-0-0"
+          },
+          "children": [
+            {
+              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-0",
+              "state": "root+delegate+delegate",
+              "action": {
+                "type": "delegate",
+                "desc": "delegate to subagent",
+                "cost": 1,
+                "baseRate": 0.6,
+                "id": "act-root+delegate-1-0"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-1",
+              "state": "root+delegate+research",
+              "action": {
+                "type": "research",
+                "desc": "gather information",
+                "cost": 1,
+                "baseRate": 0.7,
+                "id": "act-root+delegate-1-1"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-2",
+              "state": "root+delegate+verify",
+              "action": {
+                "type": "verify",
+                "desc": "verify result",
+                "cost": 1,
+                "baseRate": 0.9,
+                "id": "act-root+delegate-1-2"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-0-act-root+delegate-1-3",
+              "state": "root+delegate+deploy",
+              "action": {
+                "type": "deploy",
+                "desc": "deploy to production",
+                "cost": 3,
+                "baseRate": 0.75,
+                "id": "act-root+delegate-1-3"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            }
+          ],
+          "visits": 1,
+          "value": 0.5556489019148507,
+          "depth": 1
+        },
+        {
+          "id": "plan-1780761406377-4427-act-root-0-1",
+          "state": "root+retry",
+          "action": {
+            "type": "retry",
+            "desc": "retry on failure",
+            "cost": 2,
+            "baseRate": 0.5,
+            "id": "act-root-0-1"
+          },
+          "children": [
+            {
+              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-0",
+              "state": "root+retry+retry",
+              "action": {
+                "type": "retry",
+                "desc": "retry on failure",
+                "cost": 2,
+                "baseRate": 0.5,
+                "id": "act-root+retry-1-0"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-1",
+              "state": "root+retry+deploy",
+              "action": {
+                "type": "deploy",
+                "desc": "deploy to production",
+                "cost": 3,
+                "baseRate": 0.75,
+                "id": "act-root+retry-1-1"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-2",
+              "state": "root+retry+delegate",
+              "action": {
+                "type": "delegate",
+                "desc": "delegate to subagent",
+                "cost": 1,
+                "baseRate": 0.6,
+                "id": "act-root+retry-1-2"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-1-act-root+retry-1-3",
+              "state": "root+retry+retry",
+              "action": {
+                "type": "retry",
+                "desc": "retry on failure",
+                "cost": 2,
+                "baseRate": 0.5,
+                "id": "act-root+retry-1-3"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            }
+          ],
+          "visits": 1,
+          "value": 0.624050781330141,
+          "depth": 1
+        },
+        {
+          "id": "plan-1780761406377-4427-act-root-0-2",
+          "state": "root+deploy",
+          "action": {
+            "type": "deploy",
+            "desc": "deploy to production",
+            "cost": 3,
+            "baseRate": 0.75,
+            "id": "act-root-0-2"
+          },
+          "children": [
+            {
+              "id": "plan-1780761406377-4427-act-root-0-2-act-root+deploy-1-0",
+              "state": "root+deploy+execute",
+              "action": {
+                "type": "execute",
+                "desc": "execute step",
+                "cost": 2,
+                "baseRate": 0.8,
+                "id": "act-root+deploy-1-0"
+              },
+              "children": [],
+              "visits": 1,
+              "value": 0.5,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-2-act-root+deploy-1-1",
+              "state": "root+deploy+delegate",
+              "action": {
+                "type": "delegate",
+                "desc": "delegate to subagent",
+                "cost": 1,
+                "baseRate": 0.6,
+                "id": "act-root+deploy-1-1"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            }
+          ],
+          "visits": 2,
+          "value": 1.2766993965177793,
+          "depth": 1
+        },
+        {
+          "id": "plan-1780761406377-4427-act-root-0-3",
+          "state": "root+deploy",
+          "action": {
+            "type": "deploy",
+            "desc": "deploy to production",
+            "cost": 3,
+            "baseRate": 0.75,
+            "id": "act-root-0-3"
+          },
+          "children": [
+            {
+              "id": "plan-1780761406377-4427-act-root-0-3-act-root+deploy-1-0",
+              "state": "root+deploy+execute",
+              "action": {
+                "type": "execute",
+                "desc": "execute step",
+                "cost": 2,
+                "baseRate": 0.8,
+                "id": "act-root+deploy-1-0"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            },
+            {
+              "id": "plan-1780761406377-4427-act-root-0-3-act-root+deploy-1-1",
+              "state": "root+deploy+delegate",
+              "action": {
+                "type": "delegate",
+                "desc": "delegate to subagent",
+                "cost": 1,
+                "baseRate": 0.6,
+                "id": "act-root+deploy-1-1"
+              },
+              "children": [],
+              "visits": 0,
+              "value": 0,
+              "depth": 2
+            }
+          ],
+          "visits": 1,
+          "value": 0.7766993965177792,
+          "depth": 1
+        }
+      ],
+      "visits": 5,
+      "value": 3.23309847628055,
+      "depth": 0
+    },
+    "recommendedPath": [
+      {
+        "type": "deploy",
+        "desc": "deploy to production",
+        "cost": 3,
+        "baseRate": 0.75,
+        "id": "act-root-0-2"
+      },
+      {
+        "type": "execute",
+        "desc": "execute step",
+        "cost": 2,
+        "baseRate": 0.8,
+        "id": "act-root+deploy-1-0"
+      }
+    ],
+    "recommendedValue": 0.5,
+    "alternativePaths": [
+      {
+        "path": [
+          {
+            "type": "delegate",
+            "desc": "delegate to subagent",
+            "cost": 1,
+            "baseRate": 0.6,
+            "id": "act-root-0-0"
+          },
+          {
+            "type": "delegate",
+            "desc": "delegate to subagent",
+            "cost": 1,
+            "baseRate": 0.6,
+            "id": "act-root+delegate-1-0"
+          }
+        ],
+        "expectedValue": 0
+      },
+      {
+        "path": [
+          {
+            "type": "delegate",
+            "desc": "delegate to subagent",
+            "cost": 1,
+            "baseRate": 0.6,
+            "id": "act-root-0-0"
+          },
+          {
+            "type": "research",
+            "desc": "gather information",
+            "cost": 1,
+            "baseRate": 0.7,
+            "id": "act-root+delegate-1-1"
+          }
+        ],
+        "expectedValue": 0
+      },
+      {
+        "path": [
+          {
+            "type": "delegate",
+            "desc": "delegate to subagent",
+            "cost": 1,
+            "baseRate": 0.6,
+            "id": "act-root-0-0"
+          },
+          {
+            "type": "verify",
+            "desc": "verify result",
+            "cost": 1,
+            "baseRate": 0.9,
+            "id": "act-root+delegate-1-2"
+          }
+        ],
+        "expectedValue": 0
+      }
+    ],
+    "executedSteps": [],
+    "status": "active",
+    "createdAt": "2026-06-06T15:56:46.378Z",
+    "updatedAt": "2026-06-06T15:56:46.378Z",
+    "numSimulations": 5,
+    "maxDepth": 2
+  }
+}
