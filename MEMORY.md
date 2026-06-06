@@ -190,6 +190,21 @@ Each layer builds on the previous. Together they make the agent loop robust, obs
 | 2026-05-07 | Use NDJSON for event logs (append-only, grep-friendly) | Industry standard for structured logs |
 | 2026-05-07 | Auto-redact secrets in event system | Privacy by design — never log API keys or passwords |
 | 2026-05-07 | Steering queue messages expire (15min-4hr) | Prevents stale guidance from affecting later work |
+| 2026-05-08 | **VERIFIED: Kimi Agent Swarms can complete infrastructure sprint** | Evidence: 300 agents, 4000 steps, 12+hr persistence, full-stack coding. KClaw0 foundation (317+ tests, all passing) proves pattern viability |
+| 2026-05-08 | **Swarm plan created: `swarm-plan.md`** | Complete verification + tailored prompt + execution plan + gap analysis + agent profiles |
+| 2026-05-08 | **Target: 24/7 autonomous operation** | Build heartbeat, survival, github-integration, subagent-profiles |
+| 2026-05-08 | **ChromaDB/GitNexus install is blocking** | Must install real backends before swarm can use them |
+| 2026-05-08 | **LOOP 1: MASSIVE gaps identified in production agent infrastructure** | KClaw0 at P0-P3, production agents at P4-P10. Missing: task tool, tool registry, session manager, workflow engine, wiki engine, hooks, sandboxing, durable queues, Dark Factory governance. Swarm plan expanded from 40→120 agents. See `memory/loop1-findings.md` |
+| 2026-05-08 | **Dark Factory pattern discovered** | coleam00's experiment: 24/7 orchestrator, GitHub labels as state machine, immutable governance (MISSION.md/FACTORY_RULES.md), holdout validation, flood protection, per-node budget caps. KClaw0 needs `scripts/dark-factory.js` + governance files |
+| 2026-05-08 | **oh-my-pi implementation patterns extracted** | Task tool (agent discovery + parallel exec + output manager), tool registry (dynamic registration + feature gates), session management (JSONL v3 + blob store + compaction), async job manager (SQLite + retry + concurrency). See `memory/loop2-findings.md` |
+| 2026-05-08 | **Attractor DOT engine patterns extracted** | DOT parser, node handlers (LLM/human/shell/conditional), checkpoint after every node, resumeFrom support. Context propagation between nodes, human gates as hexagons. See `memory/loop2-findings.md` |
+| 2026-05-08 | **Adopt markdown agent definitions** | oh-my-pi pattern: `.md` files with YAML frontmatter in `memory/agents/`. Enables declarative agent configuration |
+| 2026-05-08 | **Adopt EventBus channel routing** | Decoupled event system with named channels (task:subagent:event, task:subagent:progress). Builds on event-system.js |
+| 2026-05-08 | **Adopt feature gates** | `memory/feature-flags.json` for capability toggles. Prevents broken integrations from blocking startup |
+| 2026-05-08 | **Adopt Snowflake IDs** | Distributed unique IDs for checkpoints, jobs, events. Replaces sequential integers |
+| 2026-05-08 | **Adopt immutable governance** | Dark Factory pattern: MISSION.md/FACTORY_RULES.md/CLAUDE.md never modifiable by factory. Security hard-fail |
+| 2026-05-08 | **Adopt holdout validation** | Validator never sees implementation plan. Checks outcome against issue. Prevents gaming acceptance criteria |
+| 2026-05-08 | **Planning Engine is the critical missing piece** | All existing systems are reactive (event response, loop detection, steering, followup). Need proactive planning: generate paths → simulate → select → execute. Spec uses Tree-of-Thought + MCTS (research-backed: Yao et al. 2023, Silver et al. 2017). Better fit than MiroFish (social simulation) for agent decision planning. See `memory/planning-engine-spec.md` |
 
 ---
 
@@ -226,19 +241,49 @@ See `memory/capabilities.md` for full list.
 - **Checkpoint/Resume** — Save and restore session state → `scripts/checkpoint.js`
 - **Cost Tracking** — Monitor token usage and API costs per session/task → `scripts/cost-tracker.js`
 
+**P4 Infrastructure (working code + tests, some mock-only):**
+- **LLM Client** — Multi-provider abstraction (Kimi, OpenAI, Anthropic) → `scripts/llm-client.js`
+- **Docker Execution** — Containerized code execution → `scripts/docker-exec.js` (mock-only, no Docker)
+- **ChromaDB Integration** — Semantic memory storage → `scripts/chroma-integration.js` (mock-only, no ChromaDB)
+- **GitNexus Integration** — Code knowledge graph → `scripts/gitnexus-integration.js` (mock-only, no GitNexus)
+- **MemPalace Integration** — Cross-session memory palace → `scripts/mempalace-integration.js` ✅ FUNCTIONAL
+
 **Infrastructure:**
 - Test suite: 81+ tests across 10 files
 - Docker execution environment (Type D) — `scripts/docker-exec.js` + templates
 - Subagent role profiles (6 roles) — `memory/subagent-roles.md`
 - Self-upgrade pipeline with human gates — `memory/self-upgrade-pipeline.md`
 
-**Recently Added:**
-- Knowledge graph self-model
-- Agent loop formalization
+**P5 Planning & Direction (SPEC COMPLETE, awaiting implementation):**
+- **Planning Engine** — Tree-of-Thought + MCTS multi-path planning with simulation, cost-aware path selection → `scripts/planning-engine.js` (spec at `memory/planning-engine-spec.md`)
+- **Mind Map** — Visual tree representation of planning space → `scripts/mind-map.js`
+- **Path Simulator** — Action simulation, cost estimation, risk assessment per path → `scripts/path-simulator.js`
 - Self-upgrade pipeline design
 - P2 runtime system stack (6 systems)
 - P3 checkpoint/resume + cost tracking
 - KimiClaw parallel subagent execution pattern
+- **Loop 1 (2026-05-08):** 15 repos analyzed, massive gaps identified, Dark Factory governance discovered, 10-phase plan created, 120-agent target set
+- **Loop 2 (2026-05-08):** oh-my-pi implementation patterns (task tool, tool registry, session mgmt, async jobs), Attractor DOT engine patterns, pi-chat ConversationRuntime, Conway Automaton sovereignty, LLM Wiki ingest queue, Absurd durable queue
+
+**Swarm Sprint Plan (2026-05-08 — MASSIVELY EXPANDED after Loop 1+2 Research):**
+- **Loop 1 finding:** KClaw0 is at P0-P3 maturity. Production agents operate at P4-P10. See `memory/loop1-findings.md`
+- **Loop 2 finding:** oh-my-pi patterns extracted (task tool, tool registry, session mgmt, async jobs). Attractor DOT engine patterns extracted. Dark Factory governance pattern discovered. See `memory/loop2-findings.md`
+- **Gap:** ~25,000 lines of infrastructure across 7 missing phase categories
+- **New target:** 120 swarm agents, 34 scripts (14 existing + 20 new), 480+ tests, 100% pass rate
+- **10-phase plan:** Foundation → Agent Core → Tool Harness → Memory → Workflow → Hooks/Extensions → Integration → 24/7 Runtime → E2E Testing → Verification
+- **Critical missing systems:** Task/subagent orchestration, tool registry, session management, workflow engine, wiki engine, hooks system, sandboxing, durable queues, Dark Factory governance
+- **New patterns adopted:** Markdown agent defs, EventBus channels, feature gates, Snowflake IDs, blob store, auto-compaction, immutable governance, holdout validation, GitHub label state machine
+- **New files created (2026-05-08):**
+  - `memory/MISSION.md` — Constitutional document (IMMUTABLE)
+  - `memory/FACTORY_RULES.md` — Operational rules (IMMUTABLE)
+  - `memory/CLAUDE.md` — Code style guide (IMMUTABLE)
+  - `memory/feature-flags.json` — Capability toggles (all new features default false)
+  - `memory/agents/` — 7 role profiles: coder, tester, researcher, oracle, scout, documenter, safety_reviewer
+  - `memory/loop1-findings.md` — Loop 1 research (15,683 bytes)
+  - `memory/loop2-findings.md` — Loop 2 research (14,694 bytes)
+  - `memory/loop3-specs.md` — Loop 3 implementation specs (25,897 bytes)
+  - `swarm-plan.md` — Complete swarm execution plan (35,000+ bytes)
+  - `diagrams/` — 4 ASCII architecture diagrams
 
 ---
 
